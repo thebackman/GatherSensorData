@@ -14,4 +14,12 @@ LOGFILE = os.path.join(PROJ_FOLDER, "soundlog.log")
 
 FORMAT = '%(asctime)s %(levelname)s: %(module)s: %(funcName)s(): %(message)s'
 
+# -- connection attributes
+
+HOST = "localhost"
+PORT = 4223
+
+MASTER_UID = "6Kvmoe"
+SOUND_UID = "NZ2"
+AIR_UID = "LfT"
 

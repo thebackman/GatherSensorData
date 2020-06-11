@@ -1,3 +1,6 @@
 .spyproject
 __pycache__
 *.db
+*.log
+temp.py
+*.txt

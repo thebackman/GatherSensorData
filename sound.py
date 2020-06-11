@@ -12,10 +12,6 @@ The script will, when run continiously will generate
 
 # @reboot python3 /home/pi/Projects/GatherSensorData/sound.py
 
-# TODO:
-
-# see if there is smarter way to add multiple numpy aggregations
-
 # -- libs
 
 import numpy as np
@@ -26,6 +22,7 @@ from tinkerforge.bricklet_sound_pressure_level import BrickletSoundPressureLevel
 import logging
 import sqlite3
 import os
+import time
 
 # -- logging
 
@@ -41,7 +38,6 @@ logging.basicConfig(
 HOST = "localhost"
 PORT = 4223
 UID = "NZ2"
-CURRENT_TIME = datetime.now()
 PID = os.getpid()
 
 # -- holders
@@ -143,8 +139,11 @@ if __name__ == "__main__":
 
     # -- run
     
+    # get time
+    boot_time = datetime.now()
+    
     # create a log entry
-    logging.info(f"time is {CURRENT_TIME} and script is executed after restart")
+    logging.info(f"time is {boot_time} and script is executed after restart")
     logging.info(f"start gathering decibel measures")
     logging.info(f"PID is {PID}")
     logging.info("------------------------------------------------------------")
@@ -170,5 +169,18 @@ if __name__ == "__main__":
     spl.set_decibel_callback_configuration(1000, False, "x", 0, 0)
 
     # input("Press key to exit\n") # to break out
+    # to stop this from breaking out and just disconneting we have to keep the
+    # script running. I solve this with a while loop that runs for 10 years.
+    # perhaps not the most elegant method but it works :-)
+  
+    t_end = time.time() + (60 * 60 * 24 * 365 * 10)
+    # let loop run and sleep for 24 hours
+    while time.time() < t_end:
+        time.sleep(60 * 60 * 24)
+        t = datetime.now()
+        # give a heartbet into the log
+        # TODO: check if pid is still running, and if not, send an email
+        logging.info(f"time is {t} and script is still running after 24 hours")
+    
+    # when done disconnect
     ipcon.disconnect()
-

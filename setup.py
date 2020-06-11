@@ -38,4 +38,3 @@ cur.execute(decibel)
 cur.execute(pids)
 sound_conn.commit()
 sound_conn.close()
-
