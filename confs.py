@@ -9,6 +9,7 @@ import os
 PROJ_FOLDER = "/home/pi/Projects/GatherSensorData"
 SOUND_DB = os.path.join(PROJ_FOLDER, "sound.db")
 LOGFILE = os.path.join(PROJ_FOLDER, "soundlog.log")
+AIR_DB = os.path.join(PROJ_FOLDER, "air.db")
 
 # -- logformat
 
@@ -22,4 +23,3 @@ PORT = 4223
 MASTER_UID = "6Kvmoe"
 SOUND_UID = "NZ2"
 AIR_UID = "LfT"
-

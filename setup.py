@@ -38,3 +38,23 @@ cur.execute(decibel)
 cur.execute(pids)
 sound_conn.commit()
 sound_conn.close()
+
+# -- create database for air qual data
+
+air_conn = sqlite3.connect(confs.AIR_DB)
+cur = air_conn.cursor()
+
+air = """
+CREATE TABLE 'air_measures_10min' (
+'key' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+'time' TEXT,
+'temp' NUMERIC,
+'humidity' NUMERIC,
+'pressure' NUMERIC,
+'IAQ' NUMERIC,
+'IAQ_accuracy' NUMERIC)
+"""
+
+cur.execute(air)
+air_conn.commit()
+air_conn.close()
