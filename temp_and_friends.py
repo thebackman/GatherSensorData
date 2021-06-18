@@ -1,8 +1,8 @@
-""" gather indoor air data, run every 10 minutes with cron """
+""" gather indoor air data, run every 5 minutes with cron """
 
 # -- cron
 
-# */10 * * * * python3 /home/pi/Projects/GatherSensorData/temp_and_friends.py
+# */5 * * * * python3 /home/pi/Projects/GatherSensorData/temp_and_friends.py
 
 # -- libs
 

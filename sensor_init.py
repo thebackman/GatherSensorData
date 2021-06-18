@@ -1,4 +1,4 @@
-""" turn off the leds on the sensors / bricks on restart """
+""" turn off the leds on the sensors / bricks on restart - run as cron """
 
 import time
 import confs
